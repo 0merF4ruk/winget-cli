@@ -1,123 +1,124 @@
-<h1>Windows Package Manager Client<img src=".github/images/Logo.png" align="left" width="50" height="39"></h1>
+<h1>Windows Paket Yöneticisi İstemcisi<img src=".github/images/Logo.png" align="left" width="50" height="39"></h1>
 
-This repository contains the source code for the Windows Package Manager Client.
+Bu depo, Windows Paket Yöneticisi İstemcisi için kaynak kodu içerir.
 
 ![winget install wingetcreate](.github/images/WingetInstall.gif)
 
-If you are new to the Windows Package Manager, you might want to [Explore the Windows Package Manager tool](https://docs.microsoft.com/learn/modules/explore-windows-package-manager-tool/?WT.mc_id=AZ-MVP-5004737). The packages available to the client are in the [Windows Package Manager Community Repository](https://github.com/microsoft/winget-pkgs).
 
-## Installing The Client
+Windows Paket Yöneticisi'nde yeniyseniz, [Windows Paket Yöneticisi aracını keşfedin](https://docs.microsoft.com/learn/modules/explore-windows-package-manager-tool/?WT.mc_id=AZ-MVP-5004737). İstemcinin kullanabileceği paketler [Windows Paket Yöneticisi Topluluk Deposu](https://github.com/microsoft/winget-pkgs)'nda bulunmaktadır.
 
-> The client requires Windows 10 1809 (build 17763) or later at this time. Windows Server 2019 is not supported as the Microsoft Store is not available nor are updated dependencies. It may be possible to install on Windows Server 2022, this should be considered experimental (not supported), and requires dependencies to be manually installed as well.
+## İstemcinin Kurulması
 
-### Microsoft Store [Recommended]
+> İstemci şu anda Windows 10 1809 (yapı 17763) veya sonraki bir sürümünü gerektirmektedir. Windows Server 2019, Microsoft Store'da mevcut olmadığından ve güncellenmiş bağımlılıklar bulunmadığından desteklenmemektedir. Windows Server 2022'ye yüklemek mümkün olabilir, bu deneysel olarak kabul edilmelidir (desteklenmemektedir) ve bağımlılıkların da manuel olarak yüklenmesini gerektirir.
 
-The client is distributed within the [App Installer](https://www.microsoft.com/p/app-installer/9nblggh4nns1) package. 
+### Microsoft Store [Önerilen]
 
-### Development Releases
+İstemci [Uygulama Yükleyici](https://www.microsoft.com/p/app-installer/9nblggh4nns1) paketi içinde dağıtılır. 
 
-There are two methods to get development releases:
+### Geliştirme Sürümleri
 
-* Install a [Windows 10 or Windows 11 Insider](https://insider.windows.com/) build.
-* Join the Windows Package Manager Insider program by [signing up](http://aka.ms/winget-InsiderProgram).
+Geliştirme sürümlerini almak için iki yöntem vardır:
 
-Note: it may take a few days to get the updated App Installer after you receive e-mail confirmation from joining the Windows Package Manager Insider program. If you decide to install the latest release from GitHub, and you have successfully joined the insider program, you will receive updates when the next development release has been published in the Microsoft Store.
+* Bir [Windows 10 veya Windows 11 Insider](https://insider.windows.com/) derlemesi yükleyin.
+* Windows Paket Yöneticisi Insider programına [kaydolarak](http://aka.ms/winget-InsiderProgram) katılın.
 
-Once you have received the updated App Installer from the Microsoft Store you should be able to execute `winget features` to see experimental features. Some users have reported [issues](https://github.com/microsoft/winget-cli/issues/210) with the client not being on their PATH.
+Not: Windows Paket Yöneticisi Insider programına katıldığınıza dair e-posta onayı aldıktan sonra güncellenmiş Uygulama Yükleyicisini almanız birkaç gün sürebilir. GitHub'dan en son sürümü yüklemeye karar verirseniz ve Insider programına başarıyla katıldıysanız, bir sonraki geliştirme sürümü Microsoft Store'da yayınlandığında güncellemeler alacaksınız.
 
-### Manually Update
+Microsoft Store'dan güncellenmiş Uygulama Yükleyicisini aldıktan sonra, deneysel özellikleri görmek için `winget features` komutunu çalıştırabilmeniz gerekir. Bazı kullanıcılar, istemcinin PATH'lerinde bulunmamasıyla ilgili [sorunlar](https://github.com/microsoft/winget-cli/issues/210) bildirmiştir.
 
-The same Microsoft Store package will be made available via our [Releases](https://github.com/microsoft/winget-cli/releases). Note that installing this package will give you the WinGet client, but it will not enable automatic updates from the Microsoft Store if you have not joined the Windows Package Manager Insider program.
+### Manuel Olarak Güncelle
 
-> You may need to install the [VC++ v14 Desktop Framework Package](https://docs.microsoft.com/troubleshoot/cpp/c-runtime-packages-desktop-bridge#how-to-install-and-update-desktop-framework-packages).
-> This should only be necessary on older builds of Windows 10 and only if you get an error about missing framework packages.
+Aynı Microsoft Store paketi [Sürümler](https://github.com/microsoft/winget-cli/releases) adresimiz üzerinden de kullanıma sunulacaktır. Bu paketi yüklemenin size WinGet istemcisini vereceğini, ancak Windows Paket Yöneticisi Insider programına katılmadıysanız Microsoft Store'dan otomatik güncellemeleri etkinleştirmeyeceğini unutmayın.
 
-### Troubleshooting
+> [VC++ v14 Desktop Framework Package](https://docs.microsoft.com/troubleshoot/cpp/c-runtime-packages-desktop-bridge#how-to-install-and-update-desktop-framework-packages) yüklemeniz gerekebilir.
+> Bu yalnızca Windows 10'un eski sürümlerinde ve yalnızca eksik çerçeve paketleriyle ilgili bir hata alırsanız gerekli olmalıdır.
 
-Please read our [troubleshooting guide](/doc/troubleshooting/README.md).
+### Sorun Giderme
 
-## Administrator Considerations
+Lütfen [sorun giderme kılavuzumuzu](/doc/troubleshooting/README.md) okuyun.
 
-Installer behavior can be different depending on whether you are running **winget** with administrator privileges.
+## Yöneticinin Dikkat Etmesi Gerekenler
 
-* When running **winget** without administrator privileges, some applications may [require elevation](https://docs.microsoft.com/windows/security/identity-protection/user-account-control/how-user-account-control-works) to install. When the installer runs, Windows will prompt you to [elevate](https://docs.microsoft.com/windows/security/identity-protection/user-account-control/how-user-account-control-works#the-uac-user-experience). If you choose not to elevate, the application will fail to install.  
+Yükleyici davranışı, yönetici ayrıcalıklarıyla **winget** çalıştırıp çalıştırmadığınıza bağlı olarak farklı olabilir.
 
-* When running **winget** in an Administrator Command Prompt, you will not see [elevation prompts](https://docs.microsoft.com/windows/security/identity-protection/user-account-control/how-user-account-control-works#the-uac-user-experience) if the application requires it. Always use caution when running your command prompt as an administrator, and only install applications you trust.
+* Yönetici ayrıcalıkları olmadan **winget** çalıştırırken, bazı uygulamalar yüklemek için [yükseltme gerektirebilir](https://docs.microsoft.com/windows/security/identity-protection/user-account-control/how-user-account-control-works). Yükleyici çalıştığında, Windows sizden [yükseltme](https://docs.microsoft.com/windows/security/identity-protection/user-account-control/how-user-account-control-works#the-uac-user-experience) yapmanızı isteyecektir. Yükseltmemeyi seçerseniz, uygulama yüklenemeyecektir.  
 
-### Build your own
+* Bir Yönetici Komut İsteminde **winget** çalıştırırken, uygulama gerektiriyorsa [yükseltme istemlerini](https://docs.microsoft.com/windows/security/identity-protection/user-account-control/how-user-account-control-works#the-uac-user-experience) görmezsiniz. Komut isteminizi yönetici olarak çalıştırırken her zaman dikkatli olun ve yalnızca güvendiğiniz uygulamaları yükleyin.
 
-You can also [build the client yourself](#building-the-client). While the client should be perfectly functional, we are not ready to provide full support for clients running outside of the official distribution mechanisms yet. Feel free to file an Issue, but know that it may get lower prioritization.
+### Kendiniz inşa edin
 
-## Build Status
+Ayrıca [istemciyi kendiniz de oluşturabilirsiniz](#building-the-client). İstemci tamamen işlevsel olsa da, henüz resmi dağıtım mekanizmalarının dışında çalışan istemciler için tam destek sağlamaya hazır değiliz. Bir Sorun açmaktan çekinmeyin, ancak daha düşük öncelik alabileceğini bilin.
 
-[![Build Status](https://dev.azure.com/ms/winget-cli/_apis/build/status/microsoft.winget-cli?branchName=master)](https://dev.azure.com/ms/winget-cli/_build/latest?definitionId=344&branchName=master)
+## Yapı Durumu
 
-## Windows Package Manager Release Roadmap
-The plan for delivering next Windows Package Manager releases is described included in our [discussions](https://github.com/microsoft/winget-cli/discussions/2063), and will be updated as the project proceeds.
+[![Yapı Durumu](https://dev.azure.com/ms/winget-cli/_apis/build/status/microsoft.winget-cli?branchName=master)](https://dev.azure.com/ms/winget-cli/_build/latest?definitionId=344&branchName=master)
 
-## Overview of the  Windows Package Manager
-The **Windows Package Manager** is a tool designed to help you quickly and easily discover and install those packages that make your PC environment special.  By using the **Windows Package Manager**, from one command, you can install your favorite packages: 
+## Windows Paket Yöneticisi Sürüm Yol Haritası
+Bir sonraki Windows Paket Yöneticisi sürümlerini sunma planı [tartışmalar](https://github.com/microsoft/winget-cli/discussions/2063) adresinde açıklanmıştır ve proje ilerledikçe güncellenecektir.
+
+## Windows Paket Yöneticisine Genel Bakış
+Windows Paket Yöneticisi**, bilgisayar ortamınızı özel kılan paketleri hızlı ve kolay bir şekilde keşfetmenize ve yüklemenize yardımcı olmak için tasarlanmış bir araçtır.  Windows Paket Yöneticisini** kullanarak, tek bir komutla favori paketlerinizi yükleyebilirsiniz:
 
 `winget install <package>`
 
-## Overview  
+## Genel Bakış  
 
-### Client Repository
-This winget-cli repository includes the source code designed to build the client.  You are encouraged to participate in the development of this client. We have plenty of backlog features in our [Issues](https://github.com/microsoft/winget-cli/issues). You can upvote the ones you want, add more, or even [get started on one.](https://github.com/microsoft/winget-cli/projects/1)
+### Müşteri Deposu
+Bu winget-cli deposu, istemciyi oluşturmak için tasarlanmış kaynak kodunu içerir.  Bu istemcinin geliştirilmesine katılmanız teşvik edilmektedir.[Issues](https://github.com/microsoft/winget-cli/issues) adresimizde çok sayıda birikmiş özelliğimiz var. İstediklerinizi onaylayabilir, daha fazlasını ekleyebilir ve hatta [bir tanesine başlayabilirsiniz](https://github.com/microsoft/winget-cli/projects/1)
 
-### Sources
-The client is built around the concept of sources; a set of packages effectively. Sources provide the ability to discover and retrieve the metadata about the packages, so that the client can act on it.
+### Kaynaklar
+İstemci, kaynaklar kavramı etrafında inşa edilmiştir; etkin bir şekilde bir dizi paket. Kaynaklar, istemcinin üzerinde işlem yapabilmesi için paketler hakkındaki meta verileri keşfetme ve alma yeteneği sağlar.
 
-* The default "winget" source includes packages in the [Windows Package Manager Community Repository](https://github.com/microsoft/winget-pkgs).
-* The default "msstore" source includes packages in the Microsoft Store.
-* It is also possible to host your own private [REST based](https://github.com/microsoft/winget-cli-restsource) source.
+* Varsayılan "winget" kaynağı [Windows Paket Yöneticisi Topluluk Deposu](https://github.com/microsoft/winget-pkgs) içindeki paketleri içerir.
+* Varsayılan "msstore" kaynağı Microsoft Store'daki paketleri içerir.
+* Kendi özel [REST tabanlı](https://github.com/microsoft/winget-cli-restsource) kaynağınızı barındırmanız da mümkündür.
 
-## Building the client
+## Müşteri oluşturma
 
-### Prerequisites
+### Ön Koşullar
 
-* Windows 10 1809 (17763) or later
-* [Developer Mode enabled](https://docs.microsoft.com/windows/uwp/get-started/enable-your-device-for-development)
+* Windows 10 1809 (17763) veya üstü
+* [Geliştirici Modu etkin](https://docs.microsoft.com/windows/uwp/get-started/enable-your-device-for-development)
 * [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/)
-   * Or use winget to install it ;) (although you may need to adjust the workloads via Tools->Get Tools and Features...)
-* The following workloads:
-   * .NET Desktop Development
-   * Desktop Development with C++
-   * Universal Windows Platform Development
-* The following extensions:
-   * [Microsoft Visual Studio Installer Projects](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects)
+   * Ya da yüklemek için winget kullanın ;) (Araçlar->Araçları ve Özellikleri Al... aracılığıyla iş yüklerini ayarlamanız gerekebilir)
+* Aşağıdaki iş yükleri:
+   * .NET Masaüstü Geliştirme
+   * C++ ile Masaüstü Geliştirme
+   * Evrensel Windows Platformu Geliştirme
+* Aşağıdaki uzantılar:
+   * [Microsoft Visual Studio Installer Projeleri](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects)
 
-### Building
+### Yapı
 
-We currently only build using the solution; command line methods of building a VS solution should work as well.
+Şu anda yalnızca çözümü kullanarak derleme yapıyoruz; bir VS çözümü oluşturmanın komut satırı yöntemleri de çalışmalıdır.
 
-## Credit
+## Kredi
 
-We would like to thank [Keivan Beigi (@kayone)](https://github.com/kayone) for his work on AppGet which helped us on the initial project direction for Windows Package Manager.
+Keivan Beigi'ye (@kayone)](https://github.com/kayone) Windows Paket Yöneticisi için ilk proje yöneliminde bize yardımcı olan AppGet üzerindeki çalışmaları için teşekkür ederiz.
 
-## Contributing
+## Katkıda Bulunan
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com. More 
-information is available in our [CONTRIBUTING.md](/CONTRIBUTING.md) file.
+Bu proje katkı ve önerileri memnuniyetle karşılamaktadır.  Çoğu katkı, aşağıdakileri kabul etmenizi gerektirir
+Katkıda Bulunan Lisans Sözleşmesi (CLA), bize aşağıdakileri verme hakkına sahip olduğunuzu ve gerçekten de verdiğinizi beyan eder
+katkınızı kullanma hakkına sahiptir. Ayrıntılar için https://cla.opensource.microsoft.com adresini ziyaret edin. Daha fazla 
+bilgiler [CONTRIBUTING.md](/CONTRIBUTING.md) dosyamızda mevcuttur.
 
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+Bir çekme isteği gönderdiğinizde, bir CLA botu aşağıdakileri sağlamanız gerekip gerekmediğini otomatik olarak belirleyecektir
+a CLA ve PR'yi uygun şekilde süsleyin (örn. durum kontrolü, yorum). Talimatları takip etmeniz yeterlidir
+bot tarafından sağlanır. Bunu CLA'mızı kullanarak tüm depolarda yalnızca bir kez yapmanız gerekecektir.
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information, please refer to the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+Bu proje [Microsoft Açık Kaynak Davranış Kuralları](https://opensource.microsoft.com/codeofconduct/)'nı benimsemiştir.
+Daha fazla bilgi için lütfen [Davranış Kuralları SSS](https://opensource.microsoft.com/codeofconduct/faq/) veya
+Ek sorularınız veya yorumlarınız için [opencode@microsoft.com](mailto:opencode@microsoft.com) ile iletişime geçin.
 
-## Data/Telemetry
+## Veri/Telemetri
 
-The winget.exe client is instrumented to collect usage and diagnostic (error) data and sends it to Microsoft to help improve the product. 
+winget.exe istemcisi, kullanım ve tanılama (hata) verilerini toplamak ve ürünü geliştirmeye yardımcı olması için Microsoft'a göndermek üzere enstrümante edilmiştir. 
 
-If you build the client yourself the instrumentation will not be enabled and no data will be sent to Microsoft.
+İstemciyi kendiniz oluşturursanız, enstrümantasyon etkinleştirilmez ve Microsoft'a hiçbir veri gönderilmez.
 
-The winget.exe client respects machine wide privacy settings and users can opt-out on their device, as documented in the Microsoft Windows privacy statement [here](https://support.microsoft.com/help/4468236/diagnostics-feedback-and-privacy-in-windows-10-microsoft-privacy). In addition, you may also explicitly block telemetry using [settings](https://docs.microsoft.com/windows/package-manager/winget/settings)
+winget.exe istemcisi makine genelindeki gizlilik ayarlarına saygı duyar ve kullanıcılar Microsoft Windows gizlilik bildiriminde [burada](https://support.microsoft.com/help/4468236/diagnostics-feedback-and-privacy-in-windows-10-microsoft-privacy) belgelendiği gibi cihazlarında devre dışı bırakabilirler. Buna ek olarak, [settings](https://docs.microsoft.com/windows/package-manager/winget/settings) kullanarak telemetriyi açıkça engelleyebilirsiniz.
 
-In short to opt-out, go to `Start`, then select `Settings` > `Privacy` > `Diagnostics & feedback`, and select `Basic`. 
+Kısacası, devre dışı bırakmak için `Başlat`a gidin, ardından `Ayarlar` > `Gizlilik` > `Teşhis ve geri bildirim` öğelerini seçin ve `Temel` öğesini seçin. 
 
-See the [privacy statement](privacy.md) for more details.
+Daha fazla ayrıntı için [gizlilik beyanına] (privacy.md) bakın.
